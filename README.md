@@ -2,22 +2,22 @@ Mahasiswa CRUD CI4
 
 Aplikasi CRUD Mahasiswa menggunakan CodeIgniter 4, SQL Server, dengan fitur:
 
-CRUD (Create, Read, Update, Delete) Mahasiswa
+1. CRUD (Create, Read, Update, Delete) Mahasiswa
 
-DataTables + AJAX untuk tampil data
+2. DataTables + AJAX untuk tampil data
 
-JOIN Mahasiswa ↔ Jurusan untuk menampilkan nama jurusan
+3. JOIN Mahasiswa ↔ Jurusan untuk menampilkan nama jurusan
 
-Validasi NIM dan Nama agar tidak duplikat
+4. Validasi NIM dan Nama agar tidak duplikat
 
-UI menggunakan Bootstrap 5 (modal tambah & edit, tombol hapus)
+5. UI menggunakan Bootstrap 5 (modal tambah & edit, tombol hapus)
 
 
 ---- Cara Buat Database SQL Server ---
 
-Buka SQL Server Management Studio (SSMS)
+1. Buka SQL Server Management Studio (SSMS)
 
-Jalankan query berikut:
+2. Jalankan query berikut:
 
 CREATE DATABASE MahasiswaDB;
 GO
@@ -48,18 +48,18 @@ Gunakan ENV berdasarkan .env.example dan isi database sesuai local sql server ya
 -------------------------------------------------------------------
 Install & Jalankan
 
-Clone repo:
+1. Clone repo:
 
 git clone <URL_REPO>
 cd <NAMA_FOLDER_PROJECT>
 composer install
 
 
-Jalankan server:
+2. Jalankan server:
 
 php spark serve
 
 
-Akses aplikasi di browser:
+3. Akses aplikasi di browser:
 
 http://localhost:8080
