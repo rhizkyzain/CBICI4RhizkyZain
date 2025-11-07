@@ -1,68 +1,65 @@
-# CodeIgniter 4 Application Starter
+Mahasiswa CRUD CI4
 
-## What is CodeIgniter?
+Aplikasi CRUD Mahasiswa menggunakan CodeIgniter 4, SQL Server, dengan fitur:
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+CRUD (Create, Read, Update, Delete) Mahasiswa
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+DataTables + AJAX untuk tampil data
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+JOIN Mahasiswa ↔ Jurusan untuk menampilkan nama jurusan
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+Validasi NIM dan Nama agar tidak duplikat
 
-## Installation & updates
+UI menggunakan Bootstrap 5 (modal tambah & edit, tombol hapus)
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---- Cara Buat Database SQL Server ---
 
-## Setup
+Buka SQL Server Management Studio (SSMS)
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+Jalankan query berikut:
 
-## Important Change with index.php
+CREATE DATABASE MahasiswaDB;
+GO
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+USE MahasiswaDB;
+GO
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+CREATE TABLE Jurusan (
+    id_jurusan INT IDENTITY(1,1) PRIMARY KEY,
+    nama_jurusan VARCHAR(100)
+);
 
-**Please** read the user guide for a better explanation of how CI4 works!
+CREATE TABLE Mahasiswa (
+    id_mahasiswa INT IDENTITY(1,1) PRIMARY KEY,
+    nama VARCHAR(100),
+    nim VARCHAR(50),
+    id_jurusan INT,
+    FOREIGN KEY (id_jurusan) REFERENCES Jurusan(id_jurusan)
+);
 
-## Repository Management
+INSERT INTO Jurusan (nama_jurusan)
+VALUES ('Informatika'), ('Sistem Informasi'), ('Teknik Komputer');
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+------------------------------------------------------------------
+Gunakan ENV berdasarkan .env.example dan isi database sesuai local sql server yang digunakan
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
 
-## Server Requirements
+-------------------------------------------------------------------
+Install & Jalankan
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+Clone repo:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+git clone <URL_REPO>
+cd <NAMA_FOLDER_PROJECT>
+composer install
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Jalankan server:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+php spark serve
+
+
+Akses aplikasi di browser:
+
+http://localhost:8080
